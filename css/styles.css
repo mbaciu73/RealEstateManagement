@@ -1,0 +1,62 @@
+/**************** CUSTOM CSS STYLES ***************** 
+*
+* Date:		26 October 2020
+* Authors: 	C18350801 Markus Baciu & C18727971 Thamsanqa Sibanda
+*
+*/
+HTML{
+	background-image: url("../img/bg.jpg");
+	background-size: 1920px 1080px;
+	background-position: 0px -150px;
+	background-repeat: no-repeat;
+}
+body{
+	
+	background: transparent !important;
+	color: #fff;
+}
+
+.bg-dark {
+   background: rgba(0,0,0,0.4) !important;
+}
+
+.my-icons{
+	padding: 5px 12px;
+}
+#contact-details a:link{
+	color: #F2D9BB;
+}
+#contact-details a:active{
+	color: #F2D9BB;
+}
+#contact-details a:visited{
+	color: #F2D9BB;
+}
+#contact-details a:hover{
+	color: #fff;
+}
+.br-bottom{
+	border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+.no-right-pad{
+	padding-right: 0px !important;
+}
+.no-left-pad{
+	padding-left: 0px !important;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #BF9169;
+    border-color: #a57d5b;
+}
+/*********** Main Navigation  *************/
+navbar-dark .nav-link {
+    color: #fff !important;
+	font-weight: bold;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    color: #BF9169;
+    background-color: transparent;
+    border-color: #BF9169; /*set the color you want here*/
+}
