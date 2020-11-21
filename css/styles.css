@@ -92,3 +92,73 @@ navbar-dark .nav-link {
 .form-control {
     border-radius: 0px !important;
 }
+.msg{
+	font-family: 'Dancing Script', cursive;
+	text-align: center;
+	color:#BF9169;
+}
+.small{
+	font-family: 'Caveat', cursive;
+	font-size: 16pt;
+	text-align: center;
+}
+.services{
+	padding: 60px 0px;
+}
+.serv-cons{
+	display: block;
+	color:#BF9169;
+	font-size: 34pt;
+	margin-bottom: 15px;
+}
+.serv-box{
+	border: 1px solid black;
+}
+.title{
+	color:#BF9169;
+}
+.mid-center{
+	top: 50%;
+	vertical-align: middle;
+}
+.properties-area{
+	background: #f6f6f6;
+}
+.m-bottom{
+	padding-bottom: 60px;
+}
+.strip{
+	border-bottom: 5px solid #BF9169 !important;
+}
+.TB-marg6030{
+	margin-top: 60px;
+	margin-bottom: 30px;
+}
+.p_small_details img{
+	width: 100%;
+}
+
+.p_small_details h5{
+	color: #7472a6;
+}
+.property-details{
+	border-bottom: 2px solid #ede7df;
+	padding: 10px 0px 20px 0px;
+}
+.property-details p{
+	display: inline-block;
+	margin-right: 20px;
+}
+.property-details span{
+	margin-right: 10px;
+}
+.p4_mod{
+	padding-top: 0px !important;
+}
+.clear{
+	clear: both;
+}
+.p-4 p{
+	font-size: 12pt;
+	color: #adaabf;
+}
