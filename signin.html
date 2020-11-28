@@ -13,7 +13,7 @@
 <!-------------- Java Scripts ----------------> 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-<script src="Database.js"></script>
+<script src="js/Database.js"></script>
 </head>
 
 <body>
@@ -44,7 +44,7 @@
 
 <div class="container d-none d-lg-block d-xl-block sec2_space"> </div>
 <!------------------ Sign In Form ------------------------------->
-<div class="container  xtr_tb_pad">
+<div class="container  xtr_tb_pad" id = "login">
 	<form class="form">
 		<div class="row justify-content-md-center">
 			
@@ -62,8 +62,13 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col col-lg-12 col-md-12 col-xs-12 form-group">
+					<div class="col col-lg-6 col-md-6 col-xs-12 form-group">
 						<button type="submit" class="btn btn-primary">Sign In</button>
+					</div>
+					<div class="col col-lg-6 col-md-6 col-xs-12 form-group ">
+						<p class = "text-right ">
+							<a href = "#" class = "align-middle"> Create Account</a>
+						</p>
 					</div>
 				</div>
 				

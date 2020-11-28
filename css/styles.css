@@ -228,3 +228,11 @@ navbar-dark .nav-link {
 .desc h2, .desc h4{
 	color:#7472a6;
 }
+.mytextshadow{
+	text-shadow:2px 2px black;
+}
+
+#login a, #login a:active, #login a:focus, #login a:hover, #login a:visited{
+	color:#7472a6;
+	text-decoration: none;
+}
