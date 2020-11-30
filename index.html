@@ -11,20 +11,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <!-------------- Java Scripts ----------------> 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> 
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-<script src="js/Database.js"></script>
+
 </head>
 
 <body>
 <div class="custom-background-box"></div>
 <!------------------ Navigation & Header Section ----------------->
+	
 <div id="contact-details" class="bg-dark d-none d-lg-block d-xl-block">
   <ul class="container nav justify-content-end br-bottom no-right-pad">
     <li class="nav-item"> <a class="nav-link" href="tel:+35314023000"><i class="fas fa-phone-alt my-icons"></i>+353 1 402 3000</a> </li>
     <li class="nav-item"> <a class="nav-link no-right-pad" href="mailto:info@sbrealestates.ie"><i class="fas fa-envelope my-icons"></i>info@sbrealestates.ie</a> </li>
   </ul>
 </div>
+	
 <!---------------------------------------------------------------->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark no-gutters">
   <div class="container no-right-pad no-left-pad"> <a class="navbar-brand" href="index.html"><img clas="navbar-brand" src="img/Sibanda_&_Baciu_Logo.png" width="180" height="78"></a>
@@ -36,7 +38,7 @@
         <li class="nav-item"> <a class="nav-link" href="#">ABOUT</a> </li>
         <li class="nav-item "> <a class="nav-link" href="#">BLOG</a> </li>
         <li class="nav-item"> <a class="nav-link" href="#" >CONTACT US</a> </li>
-        <li class="nav-item "> <a class="btn btn-primary my-2 my-sm-0 " href="signin.html" >Sign In</a> </li>
+        <li class="nav-item "> <a class="btn btn-primary my-2 my-sm-0 " href="/signin" >Sign In</a> </li>
       </ul>
     </div>
   </div>
@@ -44,57 +46,36 @@
 <div class="container d-none d-lg-block d-xl-block sec_space"> </div>
 <!------------------ Search Form ------------------------------->
 <div class="container bg-light drop_shaddow xtr_tb_pad">
-  <form class="form">
+  <form class="form" id="searchProperties">
     <div class="form-row"> 
       <!------ column 1 ------>
       <div class="form-group col-md-3">
         <label for="exampleFormControlSelect1">County</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Roscommon</option>
-          <option>Sligo</option>
-          <option>Tipperary</option>
-          <option>Tyrone</option>
-          <option>Waterford</option>
-          <option>Westmeath</option>
-          <option>Wexford</option>
-          <option>Wicklow</option>
+        <select class="form-control" id="County">
+          <option value="" disabled selected>Select County...</option>
         </select>
       </div>
       <!------ column 2 ------>
       <div class="form-group col-md-3">
         <label for="exampleFormControlSelect1">Area</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Roscommon</option>
-          <option>Sligo</option>
-          <option>Tipperary</option>
-          <option>Tyrone</option>
-          <option>Waterford</option>
-          <option>Westmeath</option>
-          <option>Wexford</option>
-          <option>Wicklow</option>
+        <select class="form-control" id="Area">
+          <option value="" disabled selected>Select Area...</option>
         </select>
       </div>
       <!------ column 3 ------>
       
       <div class="form-group col-md-3">
         <label for="exampleFormControlSelect1">Category</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Residential</option>
-          <option>Commercial</option>
+        <select class="form-control" id="Category">
+          <option value="" disabled selected>Select Category...</option>
         </select>
       </div>
       
       <!------ column 4 ------>
       <div class="form-group col-md-3">
         <label for="exampleFormControlSelect1">Property Type</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>House</option>
-          <option>Apartment</option>
-          <option>Duplex</option>
-          <option>Tyrone</option>
-          <option>Bungalow</option>
-          <option>Studio Apartment</option>
-          <option>Site for Sale</option>
+        <select class="form-control" id="PropertyType">
+          <option value="" disabled selected>Select Type...</option>
         </select>
       </div>
     </div>
@@ -221,7 +202,7 @@
             </div>
           </div>
           <div class="view_details">
-            <div class="p-4 p4_mod"> <a class="btn btn-primary my-2 my-sm-0 float-right" href="property.html">VIEW DETAILS</a>
+            <div class="p-4 p4_mod"> <a class="btn btn-primary my-2 my-sm-0 float-right" href="/property">VIEW DETAILS</a>
               <div class="clear"></div>
             </div>
           </div>
@@ -243,7 +224,7 @@
             </div>
           </div>
           <div class="view_details">
-            <div class="p-4 p4_mod"> <a class="btn btn-primary my-2 my-sm-0 float-right" href="property.html">VIEW DETAILS</a>
+            <div class="p-4 p4_mod"> <a class="btn btn-primary my-2 my-sm-0 float-right" href="/property">VIEW DETAILS</a>
               <div class="clear"></div>
             </div>
           </div>
@@ -265,7 +246,7 @@
             </div>
           </div>
           <div class="view_details">
-            <div class="p-4 p4_mod"> <a class="btn btn-primary my-2 my-sm-0 float-right" href="property.html">VIEW DETAILS</a>
+            <div class="p-4 p4_mod"> <a class="btn btn-primary my-2 my-sm-0 float-right" href="/property">VIEW DETAILS</a>
               <div class="clear"></div>
             </div>
           </div>
@@ -275,5 +256,7 @@
     </div>
   </div>
 </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="js/index.js"></script>
 </body>
 </html>
