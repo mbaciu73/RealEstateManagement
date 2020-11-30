@@ -19,7 +19,35 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd43b4a9-61cf-41a9-b18c-9042ada69329" name="Default Changelist" comment="commit" />
+    <list default="true" id="bd43b4a9-61cf-41a9-b18c-9042ada69329" name="Default Changelist" comment="commit">
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/all.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/fontawesome.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Sibanda_&amp;_Baciu_Logo copy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Sibanda_&amp;_Baciu_Logo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Sibanda_&amp;_Baciu_Logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Sibanda_&amp;_Baciu_Logo.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/agent1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/h1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/h2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/h3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/house_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/house_3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/river.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/template.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Assignment" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Assignment.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Database.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/all.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/all.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/bootstrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/fontawesome.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/jquery-3.5.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/thamsanqa.js" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,6 +88,7 @@
       <updated>1606660865484</updated>
       <workItem from="1606660866615" duration="2531000" />
       <workItem from="1606740872712" duration="3599000" />
+      <workItem from="1606746274884" duration="307000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1606744396287</created>

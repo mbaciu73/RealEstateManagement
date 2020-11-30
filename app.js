@@ -83,7 +83,7 @@ app.get('/retrieveCategories', function(req, res) {
 
 //query database and retrieve all property types
 app.get('/retrieveTypes', function(req, res) {
-    const query = db.prepare('SELECT catid, catname FROM procat ORDER BY catid ASC;');
+    const query = db.prepare(findAllTypes);
     query.all(function(error, rows) {
         if (error) {
             console.log(error);
