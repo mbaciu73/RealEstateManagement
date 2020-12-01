@@ -38,7 +38,9 @@ app.get("/property", function(req, res) {
 app.get("/signin", function(req, res) {
     res.sendFile(__dirname + "/signin.html");
 });
-
+app.get("/properties", function(req, res) {
+    res.sendFile(__dirname + "/properties.html");
+});
 // query database and retrieve counties
 app.get('/retrieveCounties', function(req, res) {
     const query = db.prepare(findAllCounties);
@@ -70,7 +72,6 @@ app.get('/retrieveAreas', function(req, res) {
 app.get('/retrieveCategories', function(req, res) {
     const query = db.prepare(findAllCategories);
     query.all(function(error, rows) {
-        console.log(rows);
         if (error) {
             console.log(error);
             res.status(400).json(error);
