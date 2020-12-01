@@ -13,6 +13,7 @@ const findAllCounties = 'SELECT countid, countyname FROM county ORDER BY countyn
 const findAllAreas = 'SELECT areaid, areaname, countid FROM area ORDER BY countid;';
 const findAllCategories = 'SELECT catid, catname FROM procat ORDER BY catid ASC;';
 const findAllTypes = 'SELECT ptypeid, ptypename, catid FROM protype;';
+const findAllProperties = 'SELECT pid, paddr, areaid, country,no_beds,no_baths,ptypeid,sellerid,agentid,buyerid,price FROM property';
 
 // instantiate an object of express
 const app = express();
@@ -85,6 +86,18 @@ app.get('/retrieveCategories', function(req, res) {
 //query database and retrieve all property types
 app.get('/retrieveTypes', function(req, res) {
     const query = db.prepare(findAllTypes);
+    query.all(function(error, rows) {
+        if (error) {
+            console.log(error);
+            res.status(400).json(error);
+        } else {
+            res.status(200).json(rows);
+        }
+    });
+});
+
+app.get('/retrieveProperty', function(req, res) {
+    const query = db.prepare(findAllProperties);
     query.all(function(error, rows) {
         if (error) {
             console.log(error);
