@@ -13,6 +13,7 @@ const findAllCounties = 'SELECT countid, countyname FROM county ORDER BY countyn
 const findAllAreas = 'SELECT areaid, areaname, countid FROM area ORDER BY countid;';
 const findAllCategories = 'SELECT catid, catname FROM procat ORDER BY catid ASC;';
 const findAllTypes = 'SELECT ptypeid, ptypename, catid FROM protype;';
+const findAllProperties = 'SELECT pid, paddr, areaid, country,no_beds,no_baths,ptypeid,sellerid,agentid,buyerid,price FROM property';
 
 // instantiate an object of express
 const app = express();
@@ -38,7 +39,9 @@ app.get("/property", function(req, res) {
 app.get("/signin", function(req, res) {
     res.sendFile(__dirname + "/signin.html");
 });
-
+app.get("/properties", function(req, res) {
+    res.sendFile(__dirname + "/properties.html");
+});
 // query database and retrieve counties
 app.get('/retrieveCounties', function(req, res) {
     const query = db.prepare(findAllCounties);
@@ -70,7 +73,6 @@ app.get('/retrieveAreas', function(req, res) {
 app.get('/retrieveCategories', function(req, res) {
     const query = db.prepare(findAllCategories);
     query.all(function(error, rows) {
-        console.log(rows);
         if (error) {
             console.log(error);
             res.status(400).json(error);
@@ -84,6 +86,18 @@ app.get('/retrieveCategories', function(req, res) {
 //query database and retrieve all property types
 app.get('/retrieveTypes', function(req, res) {
     const query = db.prepare(findAllTypes);
+    query.all(function(error, rows) {
+        if (error) {
+            console.log(error);
+            res.status(400).json(error);
+        } else {
+            res.status(200).json(rows);
+        }
+    });
+});
+
+app.get('/retrieveProperty', function(req, res) {
+    const query = db.prepare(findAllProperties);
     query.all(function(error, rows) {
         if (error) {
             console.log(error);
