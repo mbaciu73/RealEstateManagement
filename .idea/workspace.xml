@@ -19,12 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd43b4a9-61cf-41a9-b18c-9042ada69329" name="Default Changelist" comment="latest properties added">
+    <list default="true" id="bd43b4a9-61cf-41a9-b18c-9042ada69329" name="Default Changelist" comment="added properties">
+      <change afterPath="$PROJECT_DIR$/public/img/bg.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RealEstate.db" beforeDir="false" afterPath="$PROJECT_DIR$/RealEstate.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/properties.html" beforeDir="false" afterPath="$PROJECT_DIR$/properties.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/h11.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/h11.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/h12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/property.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/property.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/signin.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,11 +48,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1ky7EMK4I5ayjiEgRPGOz0Rb79c" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -72,7 +78,8 @@
       <workItem from="1606839886601" duration="58000" />
       <workItem from="1606840030945" duration="3465000" />
       <workItem from="1606851391126" duration="4500000" />
-      <workItem from="1606920732516" duration="4335000" />
+      <workItem from="1606920732516" duration="4527000" />
+      <workItem from="1606940424870" duration="3363000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1606744396287</created>
@@ -123,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606921658385</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added properties">
+      <created>1606930185604</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1606930185604</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,11 +156,13 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="commit" />
     <MESSAGE value="30.11.2020" />
     <MESSAGE value="01.12.2020" />
     <MESSAGE value="latest properties added" />
-    <option name="LAST_COMMIT_MESSAGE" value="latest properties added" />
+    <MESSAGE value="added properties" />
+    <option name="LAST_COMMIT_MESSAGE" value="added properties" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606839899901">
@@ -177,13 +193,17 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1606744542320" />
-    <state x="361" y="132" key="Vcs.Push.Dialog.v2" timestamp="1606921661514">
+    <state x="361" y="132" key="Vcs.Push.Dialog.v2" timestamp="1606930191965">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="132" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1606921661514" />
+    <state x="361" y="132" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1606930191965" />
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606925699651">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1606925699651" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1606940603578">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1606940603578" />
   </component>
 </project>
