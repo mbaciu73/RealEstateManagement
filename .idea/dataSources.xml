@@ -7,5 +7,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:C:\RealEstateManagement\RealEstate.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="RealEstate [2]" uuid="5143ec11-21ff-48e3-af8e-63682f21316d">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\mbaci\PhpstormProjects\RealEstateManagement\RealEstate.db</jdbc-url>
+    </data-source>
   </component>
 </project>

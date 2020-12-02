@@ -20,9 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd43b4a9-61cf-41a9-b18c-9042ada69329" name="Default Changelist" comment="01.12.2020">
-      <change afterPath="$PROJECT_DIR$/properties.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/property.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RealEstate.db" beforeDir="false" afterPath="$PROJECT_DIR$/RealEstate.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +71,7 @@
       <workItem from="1606839886601" duration="58000" />
       <workItem from="1606840030945" duration="3465000" />
       <workItem from="1606851391126" duration="4500000" />
+      <workItem from="1606920732516" duration="905000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1606744396287</created>
