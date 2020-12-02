@@ -54,7 +54,7 @@
       <!------ column 1 ------>
       <div class="form-group col-md-3">
         <label for="County">County</label>
-        <select class="form-control" id="County">
+        <select class="form-control" id="County" onchange="getSelectedOptionArea()">
           <option value="" disabled selected>Select County...</option>
         </select>
       </div>
@@ -62,14 +62,30 @@
       <div class="form-group col-md-3">
         <label for="Area">Area</label>
         <select class="form-control" id="Area">
-          <option value="" disabled selected>Select Area...</option>
+          <option value="Select Area..." disabled selected>Select Area...</option>
         </select>
       </div>
+      <script>
+        function getSelectedOptionArea() {
+          document.getElementById("Area").value = "Select Area...";
+          var area = document.getElementById('Area');
+          var selectElement = document.getElementById("County");
+          var valueSelected = selectElement.options[selectElement.selectedIndex].value;
+          for ( var i = 1, len = area.options.length; i < len; i++ ) {
+              if((area.options[i].value) == valueSelected){
+                area.options[i].setAttribute('style','display:visible');
+              }else{
+                area.options[i].setAttribute('style','display:none');
+              }// end if else
+          }// end for
+          
+      }// end getSelectedOption Function
+      </script>
       <!------ column 3 ------>
       
       <div class="form-group col-md-3">
         <label for="Category">Category</label>
-        <select class="form-control" id="Category">
+        <select class="form-control" id="Category" onchange="getSelectedOptionType()">
           <option value="" disabled selected>Select Category...</option>
         </select>
       </div>
@@ -78,11 +94,27 @@
       <div class="form-group col-md-3">
         <label for="PropertyType">Property Type</label>
         <select class="form-control" id="PropertyType">
-          <option value="" disabled selected>Select Type...</option>
+          <option value="Select Type..." disabled selected>Select Type...</option>
         </select>
       </div>
     </div>
-    
+    <script>
+      function getSelectedOptionType() {
+        document.getElementById("PropertyType").value = "Select Type...";
+        var ptype = document.getElementById('PropertyType');
+        var selectElement = document.getElementById("Category");
+        var valueSelected = selectElement.options[selectElement.selectedIndex].value;
+        for ( var i = 1, len = ptype.options.length; i < len; i++ ) {
+
+            if((ptype.options[i].value) == valueSelected){
+              ptype.options[i].setAttribute('style','display:visible');
+            }else{
+              ptype.options[i].setAttribute('style','display:none');
+            }// end if else
+        }// end for
+        
+    }// end getSelectedOption Function
+    </script>
     <!----------------- type and price ---------------->
     <div class="form-row"> 
       <!------ column 1 ------>
@@ -168,7 +200,7 @@
   </div>
 </div>
 <!-------------Latest Properties Section --------------->
-<div class="properties-area"> 
+<div id="" class="properties-area"> 
   <!----------- Heading & button ----------------->
   <div class="container">
     <div class="row no-gutters">
@@ -184,11 +216,11 @@
     </div>
     
     <!--------   Properties ---------->
-    <div class="row no-gutters"> 
+    <div id="latest-properties" class="row no-gutters"> 
       <!----------- start -------------> 
       
       <!----------- Property 1 ------------->
-      <div class="col-md-4 col-sm-6 col-xs-12 p-3">
+      <!-- <div class="col-md-4 col-sm-6 col-xs-12 p-3">
         <div class="border strip">
           <div class="p_small_details"> <img class="" src="img/h1.jpg"/>
             <div class="p-4">
@@ -207,10 +239,10 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!----------- End -------------> 
       <!----------- Property 1 ------------->
-      <div class="col-md-4 col-sm-6 col-xs-12 p-3">
+      <!-- <div class="col-md-4 col-sm-6 col-xs-12 p-3">
         <div class="border strip">
           <div class="p_small_details"> <img class="" src="img/h2.jpg"/>
             <div class="p-4">
@@ -229,10 +261,10 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!----------- end -------------> 
       <!----------- Property 1 ------------->
-      <div class="col-md-4 col-sm-6 col-xs-12 p-3">
+      <!-- <div class="col-md-4 col-sm-6 col-xs-12 p-3">
         <div class="border strip">
           <div class="p_small_details"> <img class="" src="img/h3.jpg"/>
             <div class="p-4">
@@ -251,7 +283,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!----------- end -------------> 
     </div>
   </div>

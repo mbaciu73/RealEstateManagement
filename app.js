@@ -14,6 +14,7 @@ const findAllAreas = 'SELECT areaid, areaname, countid FROM area ORDER BY counti
 const findAllCategories = 'SELECT catid, catname FROM procat ORDER BY catid ASC;';
 const findAllTypes = 'SELECT ptypeid, ptypename, catid FROM protype;';
 const findAllProperties = 'SELECT pid, paddr, areaid, country,no_beds,no_baths,ptypeid,sellerid,agentid,buyerid,price FROM property';
+const latestResidentials = 'SELECT pid, paddr,ptypename,no_bed,no_baths, imgname, areaname from property join pimages using (pid) join area using (areaid) join protype USING (ptypeid) JOIN procat USING (catid) where catid != 2 ORDER by pid DESC LIMIT 3;';
 
 // instantiate an object of express
 const app = express();
@@ -98,6 +99,19 @@ app.get('/retrieveTypes', function(req, res) {
 
 app.get('/retrieveProperty', function(req, res) {
     const query = db.prepare(findAllProperties);
+    query.all(function(error, rows) {
+        if (error) {
+            console.log(error);
+            res.status(400).json(error);
+        } else {
+            res.status(200).json(rows);
+        }
+    });
+});
+
+// add 3 properties on the home page
+app.get('/retrieveLatestResidentialProperites', function(req, res) {
+    const query = db.prepare(latestResidentials);
     query.all(function(error, rows) {
         if (error) {
             console.log(error);
