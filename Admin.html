@@ -1,0 +1,295 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Sibanda & Baciu Realestates</title>
+
+    <!-------------- Java Scripts ---------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="js/Filter.js"></script>
+    <script src="js/fontawesome.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="js/bootstrap.js"></script>
+    <!-------------- Style Sheets ---------------->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link id="StyleSheets" rel="stylesheet" href="css/styles.css">
+    <!-------------- fonts ---------------->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="custom-background-box"></div>
+<!------------------ Navigation & Header Section ----------------->
+
+<div id="contact-details" class="bg-dark d-none d-lg-block d-xl-block">
+    <ul class="container nav justify-content-end br-bottom no-left-pad">
+        <li class="nav-item"> <p> Admin</p></li>
+    <ul class="container nav justify-content-end br-bottom no-right-pad">
+        <li class="nav-item"> <a class="nav-link" href="tel:+35314023000"><i class="fas fa-phone-alt my-icons"></i>+353 1 402 3000</a> </li>
+        <li class="nav-item"> <a class="nav-link no-right-pad" href="mailto:info@sbrealestates.ie"><i class="fas fa-envelope my-icons"></i>info@sbrealestates.ie</a> </li>
+    </ul>
+</div>
+
+<!---------------------------------------------------------------->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark no-gutters">
+    <div class="container no-right-pad no-left-pad"> <a class="navbar-brand" href="/"><img clas="navbar-brand" src="img/Sibanda_&_Baciu_Logo.png" width="180" height="78"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav no-right-pad">
+                <li class="nav-item active"> <a class="nav-link" href="/">HOME <span class="sr-only">(current)</span></a> </li>
+                <li class="nav-item"> <a class="nav-link" href="/properties">PROPERTIES</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="#">ABOUT</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="#" >CONTACT US</a> </li>
+                <li class="nav-item "> <a class="btn btn-primary my-2 my-sm-0 " href="/signin" >Sign In</a> </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container d-none d-lg-block d-xl-block sec_space"> </div>
+<!------------------ Search Form ------------------------------->
+<div class="container bg-light drop_shaddow xtr_tb_pad">
+    <form class="form" id="searchProperties">
+        <div class="form-row">
+            <!------ column 1 ------>
+            <div class="form-group col-md-3">
+                <label for="County">County</label>
+                <select class="form-control" id="County" onchange="getSelectedOptionArea()">
+                    <option value="" disabled selected>Select County...</option>
+                </select>
+            </div>
+            <!------ column 2 ------>
+            <div class="form-group col-md-3">
+                <label for="Area">Area</label>
+                <select class="form-control" id="Area">
+                    <option value="Select Area..." disabled selected>Select Area...</option>
+                </select>
+            </div>
+            <script>
+                function getSelectedOptionArea() {
+                    document.getElementById("Area").value = "Select Area...";
+                    var area = document.getElementById('Area');
+                    var selectElement = document.getElementById("County");
+                    var valueSelected = selectElement.options[selectElement.selectedIndex].value;
+                    for ( var i = 1, len = area.options.length; i < len; i++ ) {
+                        if((area.options[i].value) == valueSelected){
+                            area.options[i].setAttribute('style','display:visible');
+                        }else{
+                            area.options[i].setAttribute('style','display:none');
+                        }// end if else
+                    }// end for
+
+                }// end getSelectedOption Function
+            </script>
+            <!------ column 3 ------>
+
+            <div class="form-group col-md-3">
+                <label for="Category">Category</label>
+                <select class="form-control" id="Category" onchange="getSelectedOptionType()">
+                    <option value="" disabled selected>Select Category...</option>
+                </select>
+            </div>
+
+            <!------ column 4 ------>
+            <div class="form-group col-md-3">
+                <label for="PropertyType">Property Type</label>
+                <select class="form-control" id="PropertyType">
+                    <option value="Select Type..." disabled selected>Select Type...</option>
+                </select>
+            </div>
+        </div>
+        <script>
+            function getSelectedOptionType() {
+                document.getElementById("PropertyType").value = "Select Type...";
+                var ptype = document.getElementById('PropertyType');
+                var selectElement = document.getElementById("Category");
+                var valueSelected = selectElement.options[selectElement.selectedIndex].value;
+                for ( var i = 1, len = ptype.options.length; i < len; i++ ) {
+
+                    if((ptype.options[i].value) == valueSelected){
+                        ptype.options[i].setAttribute('style','display:visible');
+                    }else{
+                        ptype.options[i].setAttribute('style','display:none');
+                    }// end if else
+                }// end for
+
+            }// end getSelectedOption Function
+        </script>
+        <!----------------- type and price ---------------->
+        <div class="form-row">
+            <!------ column 1 ------>
+            <div class="form-group col-md-3">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label for="Bedrooms"><span class="d-none d-xl-inline">No. of </span>Bedrooms</label>
+                        <input type="text" class="form-control" placeholder="0" id = "Bedrooms">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="Bathrooms"><span class="d-none d-xl-inline">No. of </span>Bathrooms</label>
+                        <input type="text" class="form-control" placeholder="0" id = "Bathrooms">
+                    </div>
+                </div>
+            </div>
+            <!------ column 2 ------>
+            <div class="form-group col-md-3">
+                <label for="MinPrice">Min. Price</label>
+                <input type="text" class="form-control" placeholder="€0000.00" id = "MinPrice">
+            </div>
+            <!------ column 3 ------>
+            <div class="form-group col-md-3">
+                <label for="MaxPrice">Max. Price</label>
+                <input type="text" class="form-control" placeholder="€0000.00" id = "MaxPrice">
+            </div>
+            <!------ column 4 ------>
+            <div class="form-group col-md-3">
+                <label for="Search" class="invisible">Search</label>
+                <button type="button" class="btn btn-primary btn-block"id = "Search">SEARCH</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!------ end search form ------>
+
+<!-------------Services Section --------------->
+<div class="container m-bottom">
+    <div class="row justify-content-center services">
+        <div class="col-5">
+            <h1 class="msg">Best Realestate Services</h1>
+            <p class="small">Finding you "The Home"</p>
+        </div>
+    </div>
+
+    <!-------------Services Info Section --------------->
+    <div class="row no-gutters">
+        <!----------- Box 1 ------------->
+        <div class="col-md-3 col-sm-6 col-xs-12 p-2">
+            <div class="border p-4 strip">
+                <div class="headings"> <span class="serv-cons"><i class="fas fa-home"></i></span>
+                    <h5>Your Dream Home</h5>
+                </div>
+                <p>We work hard and go the extra mile for you to find your dream home.</p>
+            </div>
+        </div>
+        <!----------- Box 2 ------------->
+        <div class="col-md-3 col-sm-6 col-xs-12 p-2">
+            <div class="border p-4 strip">
+                <div class="headings"> <span class="serv-cons"><i class="fas fa-map-marked-alt"></i></span>
+                    <h5>Conveyancing</h5>
+                </div>
+                <p>We take care of all conveyancing matters that a related to your property.</p>
+            </div>
+        </div>
+        <!----------- Box 3 ------------->
+        <div class="col-md-3 col-sm-6 col-xs-12 p-2">
+            <div class="border p-4 strip">
+                <div class="headings"> <span class="serv-cons"><i class="fas fa-drafting-compass"></i></span>
+                    <h5>Design & Construction</h5>
+                </div>
+                <p>New Builds? Not a problem, we help you design your home to your taste.</p>
+            </div>
+        </div>
+        <!----------- Box 4 ------------->
+        <div class="col-md-3 col-sm-6 col-xs-12 p-2">
+            <div class="border p-4 strip">
+                <div class="headings"> <span class="serv-cons"><i class="fas fa-balance-scale"></i></span>
+                    <h5>Legal Support</h5>
+                </div>
+                <p>Our in-house solicitors work out the fine legal bits for your so you do not have to worry.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-------------Latest Properties Section --------------->
+<div id="" class="properties-area">
+    <!----------- Heading & button ----------------->
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-md-12 col-sm-12 col-xs-12 ">
+                <div class="row TB-marg6030">
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <h2 class="title">Latest Properties</h2>
+                        <p class="">New Offerings In The Residential Market</p>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12"><a class="btn btn-outline-secondary my-2 my-sm-0 float-right" href="#">VIEW ALL PROPERTIES</a></div>
+                </div>
+            </div>
+        </div>
+
+        <!--------   Properties ---------->
+        <div id="latest-properties" class="row no-gutters">
+            <!----------- start ------------->
+
+            <!----------- Property 1 ------------->
+            <!-- <div class="col-md-4 col-sm-6 col-xs-12 p-3">
+              <div class="border strip">
+                <div class="p_small_details"> <img class="" src="img/h1.jpg"/>
+                  <div class="p-4">
+                    <h5>25 The Ahston Round About</h5>
+                    <p>House</p>
+                    <div class="property-details"> <span class=""><i class="fas fa-bed"></i></span>
+                      <p>2 Bedrooms</p>
+                      <span class=""><i class="fas fa-bath"></i></span>
+                      <p>2 Bathrooms</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="view_details">
+                  <div class="p-4 p4_mod"> <a class="btn btn-primary my-2 my-sm-0 float-right" href="/property">VIEW DETAILS</a>
+                    <div class="clear"></div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <!----------- End ------------->
+            <!----------- Property 1 ------------->
+            <!-- <div class="col-md-4 col-sm-6 col-xs-12 p-3">
+              <div class="border strip">
+                <div class="p_small_details"> <img class="" src="img/h2.jpg"/>
+                  <div class="p-4">
+                    <h5>25 The Ahston Round About</h5>
+                    <p>Apartment</p>
+                    <div class="property-details"> <span class=""><i class="fas fa-bed"></i></span>
+                      <p>2 Bedrooms</p>
+                      <span class=""><i class="fas fa-bath"></i></span>
+                      <p>2 Bathrooms</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="view_details">
+                  <div class="p-4 p4_mod"> <a class="btn btn-primary my-2 my-sm-0 float-right" href="/property">VIEW DETAILS</a>
+                    <div class="clear"></div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <!----------- end ------------->
+            <!----------- Property 1 ------------->
+            <!-- <div class="col-md-4 col-sm-6 col-xs-12 p-3">
+              <div class="border strip">
+                <div class="p_small_details"> <img class="" src="img/h3.jpg"/>
+                  <div class="p-4">
+                    <h5>25 The Ahston Round About</h5>
+                    <p>Studio Apartment</p>
+                    <div class="property-details"> <span class=""><i class="fas fa-bed"></i></span>
+                      <p>2 Bedrooms</p>
+                      <span class=""><i class="fas fa-bath"></i></span>
+                      <p>2 Bathrooms</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="view_details">
+                  <div class="p-4 p4_mod"> <a class="btn btn-primary my-2 my-sm-0 float-right" href="/property">VIEW DETAILS</a>
+                    <div class="clear"></div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <!----------- end ------------->
+        </div>
+    </div>
+</div>
+<script src="js/index.js"></script>
+</body>
+</html>
