@@ -16,6 +16,7 @@ const findAllTypes = 'SELECT ptypeid, ptypename, catid FROM protype;';
 const findAllProperties = 'SELECT pid, paddr, areaid, country,no_beds,no_baths,ptypeid,sellerid,agentid,buyerid,price FROM property';
 const latestResidentials = 'SELECT pid, paddr,ptypename,no_bed,no_baths, imgname, areaname from property join pimages using (pid) join area using (areaid) join protype USING (ptypeid) JOIN procat USING (catid) where catid != 2 ORDER by pid DESC LIMIT 3;';
 const allProperties = 'SELECT pid, paddr,ptypename,no_bed,no_baths, imgname, areaname from property join pimages using (pid) join area using (areaid) join protype USING (ptypeid) JOIN procat USING (catid) ORDER by pid ASC';
+const findUser = 'SELECT * FROM reusers;'
 // instantiate an object of express
 const app = express();
 
@@ -31,9 +32,6 @@ app.get("/",function(req,res){
 });
 
 // all links
-app.get("/signin", function(req, res) {
-    res.sendFile(__dirname + "/signin.html");
-});
 app.get("/property", function(req, res) {
     res.sendFile(__dirname + "/property.html");
 });
@@ -43,6 +41,10 @@ app.get("/signin", function(req, res) {
 app.get("/properties", function(req, res) {
     res.sendFile(__dirname + "/properties.html");
 });
+app.get("/adminarea", function(req, res) {
+    res.sendFile(__dirname + "/admin.html");
+});
+
 // query database and retrieve counties
 app.get('/retrieveCounties', function(req, res) {
     const query = db.prepare(findAllCounties);
