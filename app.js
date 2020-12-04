@@ -13,10 +13,10 @@ const findAllCounties = 'SELECT countid, countyname FROM county ORDER BY countyn
 const findAllAreas = 'SELECT areaid, areaname, countid FROM area ORDER BY countid;';
 const findAllCategories = 'SELECT catid, catname FROM procat ORDER BY catid ASC;';
 const findAllTypes = 'SELECT ptypeid, ptypename, catid FROM protype;';
-const findAllProperties = 'SELECT pid, paddr, areaid, country,no_beds,no_baths,ptypeid,sellerid,agentid,buyerid,price FROM property';
+const findAllProperties = 'SELECT pid, paddr,ptypename,no_bed,no_baths, imgname, areaname from property join pimages using (pid) join area using (areaid) join protype USING (ptypeid) JOIN procat USING (catid) ORDER by pid DESC;';
 const latestResidentials = 'SELECT pid, paddr,ptypename,no_bed,no_baths, imgname, areaname from property join pimages using (pid) join area using (areaid) join protype USING (ptypeid) JOIN procat USING (catid) where catid != 2 ORDER by pid DESC LIMIT 3;';
-const allProperties = 'SELECT pid, paddr,ptypename,no_bed,no_baths, imgname, areaname from property join pimages using (pid) join area using (areaid) join protype USING (ptypeid) JOIN procat USING (catid) ORDER by pid ASC';
-const findUser = 'SELECT * FROM reusers;'
+const allProperties = 'SELECT pid, paddr,ptypename,no_bed,no_baths, imgname, areaname from property join pimages using (pid) join area using (areaid) join protype USING (ptypeid) JOIN procat USING (catid) ORDER by pid ASC;';
+const findUser = 'SELECT * FROM reusers;';
 // instantiate an object of express
 const app = express();
 
@@ -99,6 +99,7 @@ app.get('/retrieveTypes', function(req, res) {
     });
 });
 
+// get all properties in the database
 app.get('/retrieveAllProperties', function(req, res) {
     const query = db.prepare(findAllProperties);
     query.all(function(error, rows) {
