@@ -29,10 +29,6 @@ $(document).ready(function() {
     post.fail(displayErrorPopulate);
 });
 
-
-// store array of counties
-// const counties = new Map();
-
 // function to populate Counties
 function populateCountiesSelect(rows, status, xhr) {
     for (let i = 0; i < rows.length; i++) {
@@ -57,11 +53,11 @@ function populateCatSelect(rows, status, xhr) {
 // function to populate types
 function populateTypesSelect(rows, status, xhr) {
     for (let i = 0; i < rows.length; i++) {
-        $(`<option style="display:none" data-ptypeid='${rows[i].ptypeid}'  value='${rows[i].catid}'>${rows[i].ptypename}</option>`).appendTo('#PropertyType');
+        $(`<option style="display:none" data-catid='${rows[i].catid}'  value='${rows[i].catid}'>${rows[i].ptypename}</option>`).appendTo('#PropertyType');
     }// end for
 }// end populateType
 
-
+// function to populate latest residential area on homepage
 function populateLatestResidential(rows, status, xhr) {
     for (let i = 0; i < rows.length; i++) {
 
@@ -85,10 +81,8 @@ function populateLatestResidential(rows, status, xhr) {
           </div>
         </div>
       </div>`).appendTo('#latest-properties');
-      
-        //$(`<option style="display:none" data-ptypeid='${rows[i].ptypeid}'  value='${rows[i].catid}'>${rows[i].ptypename}</option>`).appendTo('#PropertyType');
     }// end for
-}// end populateType
+}// end populateLatestResidential
 function displayErrorPopulate() {
 	console.log('failed to populate');
 }

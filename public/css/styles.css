@@ -33,7 +33,7 @@ body{
 }
 .custom-background-box-2{
 	
-	position: absolute;
+	position: fixed;
 	padding: 0px;
 	left: 0px;
   	top: 0px;
@@ -44,6 +44,22 @@ body{
 	background-image: url("../img/bg.jpg");
 	background-size: 1920px 1080px;
 	background-position: 0px -130px;
+	background-repeat: no-repeat;
+
+}
+.custom-background-box-3{
+	
+	position: absolute;
+	padding: 0px;
+	left: 0px;
+  	top: 0px;
+	z-index: -99;
+	width: 100%;
+	height: 100%;
+	margin: 0px auto;
+	background-image: url("../img/bg.jpg");
+	background-size: 1920px 1080px;
+	background-position: 0px -730px;
 	background-repeat: no-repeat;
 }
 .bg-dark {
@@ -105,6 +121,9 @@ navbar-dark .nav-link {
 }
 .sec3_space{
 	height: 455px;
+}
+.sec4_space{
+	height: 255px;
 }
 .xtr_tb_pad{
 	padding-top: 20px !important;
@@ -235,4 +254,26 @@ navbar-dark .nav-link {
 #login a, #login a:active, #login a:focus, #login a:hover, #login a:visited{
 	color:#7472a6;
 	text-decoration: none;
+}
+#properties-title h2,#properties-title p{
+	color: white;
+}
+.pad-bottom{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.social a:link{
+	color: #BF9169;
+}
+.social a:active{
+	color: #BF9169;
+}
+.social a:visited{
+	color: #BF9169;
+}
+.social a:hover{
+	color: #F2D9BB;
+}
+.pad-left{
+	padding-left: 10px;
 }

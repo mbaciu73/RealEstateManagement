@@ -12,36 +12,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <!-------------- Java Scripts ----------------> 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-	<script src="js/fontawesome.js"></script>
-	<script src="https://unpkg.com/@popperjs/core@2"></script>
-	<script src="js/bootstrap.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/header.js"></script>
+<script src="js/fontawesome.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js" integrity="sha512-7yA/d79yIhHPvcrSiB8S/7TyX0OxlccU8F/kuB8mHYjLlF1MInPbEohpoqfz0AILoq5hoD7lELZAYYHbyeEjag==" crossorigin="anonymous"></script>  <script src="js/bootstrap.js"></script>
+<script src="js/bootstrap.js"></script> 
 </head>
 
 <body>
 <div class="custom-background-box-2"></div>
 <!------------------ Navigation & Header Section ----------------->
-<div id="contact-details" class="bg-dark d-none d-lg-block d-xl-block">
-  <ul class="container nav justify-content-end br-bottom no-right-pad">
-    <li class="nav-item"> <a class="nav-link" href="tel:+35314023000"><i class="fas fa-phone-alt my-icons"></i>+353 1 402 3000</a> </li>
-    <li class="nav-item"> <a class="nav-link no-right-pad" href="mailto:info@sbrealestates.ie"><i class="fas fa-envelope my-icons"></i>info@sbrealestates.ie</a> </li>
-  </ul>
-</div>
-<!---------------------------------------------------------------->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark no-gutters">
-  <div class="container no-right-pad no-left-pad"> <a class="navbar-brand" href="/"><img clas="navbar-brand" src="img/Sibanda_&_Baciu_Logo.png" width="180" height="78"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-      <ul class="navbar-nav no-right-pad">
-        <li class="nav-item active"> <a class="nav-link" href="/">HOME <span class="sr-only">(current)</span></a> </li>
-        <li class="nav-item"> <a class="nav-link" href="/properties">PROPERTIES</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="#">ABOUT</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="#" >CONTACT US</a> </li>
-        <li class="nav-item "> <a class="btn btn-primary my-2 my-sm-0 " href="signin.html" >Sign In</a> </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<div id ="header"></div>
+<!------------------ End Navigation & Header Section ----------------->
 
 <div class="container d-none d-lg-block d-xl-block sec2_space"> </div>
 <!------------------ Sign In Form ------------------------------->
@@ -52,14 +34,14 @@
 			<div class="col-lg-5 col-md-5 col-xs-5 bg-light drop_shaddow p-5 m-5 justify-content-md-center">
 				<div class="row">
 					<div class="col col-lg-12 col-md-12 col-xs-12 form-group">
-						<label for="EmailLogin">Email Address:</label>
-						<input type="email" class="form-control" id="EmailLogin" aria-describedby="emailHelp" placeholder="Enter email">
+						<label for="email">Email Address:</label>
+						<input type="email" name="username" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col col-lg-12 col-md-12 col-xs-12 form-group">
-						<label for="Password1">Password</label>
-						<input type="password" class="form-control" id="Password1" placeholder="Password">
+						<label for="pswd">Password</label>
+						<input type="password" name="password" class="form-control" id="pswd" placeholder="Password">
 					</div>
 				</div>
 				<div class="row">
@@ -72,9 +54,5 @@
 		</div>
 	</form>
 </div>
-<!------ end search form ------>
-
-
-<script src = "js/signin"></script>
 </body>
 </html>
