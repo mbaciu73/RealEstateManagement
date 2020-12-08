@@ -28,6 +28,14 @@ $(document).ready(function() {
     post.done(populateLatestResidential);
     post.fail(displayErrorPopulate);
 });
+// $('#search').click(function(){
+//     // store search field data 
+//     const data = {
+
+//     }
+//     const post = $.post('http://localhost:3000/search_properties', data);
+//     post.done(displaySearchResultsPage);
+// });
 
 // function to populate Counties
 function populateCountiesSelect(rows, status, xhr) {
@@ -83,6 +91,11 @@ function populateLatestResidential(rows, status, xhr) {
       </div>`).appendTo('#latest-properties');
     }// end for
 }// end populateLatestResidential
+
 function displayErrorPopulate() {
 	console.log('failed to populate');
 }
+
+// function displaySearchResultsPage(){
+
+// }

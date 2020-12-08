@@ -11,13 +11,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <!-------------- Java Scripts ----------------> 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> 
+<script src="js/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src="js/admin_menu.js"></script>
 <script src="js/header.js"></script>
 <script src="js/fontawesome.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js" integrity="sha512-7yA/d79yIhHPvcrSiB8S/7TyX0OxlccU8F/kuB8mHYjLlF1MInPbEohpoqfz0AILoq5hoD7lELZAYYHbyeEjag==" crossorigin="anonymous"></script>  <script src="js/bootstrap.js"></script>
 <script src="js/bootstrap.js"></script> 
+
 </head>
 
 <body>
@@ -38,20 +40,20 @@
     </div>
 	</div>
 <!------------------ Sign In Form ------------------------------->
-<div class="container xtr_tb_pad" id = "login">
-	<form class="form" method="post" action="/createProperty" enctype="multipart/form-data">
+<div class="container xtr_tb_pad">
+	<form id="main-form" class="form" >
 		<div class="row justify-content-md-center">
 			<!------------------------- Create user form ------------------------------------------------>
 			<div class="col-lg-5 col-md-5 col-xs-12 bg-light drop_shaddow p-5 m-2">
 				<div class="row">
 					<div class="col col-lg-12 col-md-12 col-xs-12 form-group">
-						<label for="cat">Category Name:</label>
-						<input type="text" class="form-control" id="cat" aria-describedby="catHelp" placeholder="Enter Category Name">
+						<label for="CategoryName">Category Name:</label>
+						<input id="CategoryName"  name="CategoryName" type="text" class="form-control" aria-describedby="catHelp" placeholder="Enter Category Name">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col col-lg-6 col-md-6 col-xs-12 file-path-wrapper form-group">
-						<button type="submit" class="btn btn-primary">Create Category</button>
+						<button id='btnSubmit' type='button' class='btn btn-primary'>Create Category</button>
 					</div>
 				</div>
 			</div>
@@ -66,5 +68,6 @@
 		</div>
 	</form>
 </div>
+<script src="js/create_category.js"></script>
 </body>
 </html>

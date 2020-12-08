@@ -7,12 +7,15 @@ const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
 // Attach sqlite3 database file to web app 
 const db = new sqlite3.Database('RealEstate.db');
+// import express validator module
+const { body, validationResult } = require('express-validator');
 // attach bcrypt module
 const bcrypt = require('bcrypt');
-// import express session
+// import express session module
 const session = require('express-session');
-// import passport
+// import passport module
 const passport = require('passport');
+const { query } = require('express');
 // import passport local
 const localStrategy = require('passport-local').Strategy;
 // salt rounds
@@ -30,16 +33,10 @@ const allProperties = 'SELECT pid, paddr,ptypename,no_bed,no_baths, imgname, are
 const findPasswordByEmail = 'SELECT email, password FROM reusers where email = $1;';
 const findUserByEmail = 'SELECT email FROM reusers WHERE email = $1;';
 const insertUser = 'INSERT INTO reusers (email, name, phone, password, roleid) values ($1,$2,$3,$4,$5);'
-const searchProperties = '';
+const searchProperties = 'SELECT * FROM property NATURAL join area NATURAL join County natural join protype NATURAL JOIN procat join reusers on property.sellerid = reusers.email NATURAL join pimages WHERE areaname like $1 AND ptypename like $2 and no_bed = $3 AND no_baths= $4 AND price BETWEEN $5 AND $6;';
 const userNotFound = 'Username not found!';
 const incorrectPassword = 'Incorrect password!';
-
-// store user data in the following variables
-// const useremail = 'admin2@sb.com';
-// const name = 'Testing Sibanda';
-// const phone = '0877941056';
-// const passwd = '12345678';
-// const role = 'seller';
+const insertCategory = 'INSERT INTO procat (catname) values ($1);';
 
 // instantiate an object of express
 const app = express();
@@ -57,25 +54,6 @@ app.use(session({
 // use the passport for authentication
 app.use(passport.initialize());
 app.use(passport.session());
-
-// passport authentication code
-// passport.use(new localStrategy(
-//   function(email, password, done) { 
-//       const query = db.prepare(findPasswordByEmail);
-//     query.get(email, function(err, row){
-//         if (err) { return done(err); }
-//         if (!row) { return done(null, false, {message: 'User not found.'}); }
-//         bcrypt.compare(password, row.password, function(err, result){
-//             // result = true
-//             if(result == true){
-//                 done(null, {id: row.email});
-//             }else{
-//                 return done(null, false, {message: 'Incorrect password'});
-//             }
-//         });
-//     });
-//   }
-// ));
 ///////////////////////////////////////////////////////////////////////////////////////
 passport.use(new localStrategy(function(username, password, done) {
     console.log(username);
@@ -90,18 +68,13 @@ passport.use(new localStrategy(function(username, password, done) {
         });
     });
 }));
-//////////////////////////////////////////////////////////////////////////////////////
-// serialise user login
-// passport.serializeUser(function(user, done){
-//     done(null, user.id);
-// });
+
 
 //////////////////////////////////////////////////////////////////////////////////////
+//serialize
 passport.serializeUser(function(user, done) {
     return done(null, user.id);
 });
-/////////////////////////////////////////////////////////////////////////////////////
-
 // deserialise
 passport.deserializeUser(function(id, done) {
     const userQuery = db.prepare(findUserByEmail);
@@ -110,7 +83,7 @@ passport.deserializeUser(function(id, done) {
         return done(null, row);
     });
 });
-
+/////////////////////////////////////////////////////////////////////////////////////
 // run the server on port 3000
 app.listen(3000, function(){
 	console.log('Server running on port 3000');
@@ -124,31 +97,10 @@ app.get("/",function(req,res){
 app.get("/signin", isNotAuthenticated(),function(req, res) {
     res.sendFile(__dirname + "/signin.html");
 });
-// protected admin page in route login to access
-// app.post('/signin', function(req, res, next) {
-//     passport.authenticate('local', function(err, user, info) {
-//       if (err) { 
-//           console.log(err);
-//           return next(err); 
-//         }
-//       if (!user) { 
-//             console.log(info);
-//           return res.redirect('/signin'); 
-//         }
-//       req.login(user, function(err) {
-//         if (err) { 
-//             console.log(err);
-//             return next(err); 
-//         }
-//         return res.redirect('/admin');
-//       });
-//     })(req, res, next);
-//   });
+
 ///////////////////////////////////////////////////////////////////////////
 app.post('/signin', function(req, res, next) {
-    
     passport.authenticate('local', function(err, user, info) {
-
         if (err) {
             console.log(err)
             return next(err);
@@ -174,9 +126,7 @@ function isAuthenticated(){
         res.redirect('/signin');
     }
 }
-
 function isNotAuthenticated(){
-    
     return function(req, res, next){
         if (req.isAuthenticated()){
             return res.redirect('/admin');
@@ -184,6 +134,7 @@ function isNotAuthenticated(){
         next();
     }
 }
+
 
 app.get("/property", function(req, res) {
     res.sendFile(__dirname + "/property.html");
@@ -198,10 +149,6 @@ app.get("/properties", function(req, res) {
     res.sendFile(__dirname + "/properties.html");
 });
 app.get("/signin", isNotAuthenticated(), function(req, res) {
-    res.sendFile(__dirname + "/signin.html");
-});
-// handle unfound pages
-app.get("*", isNotAuthenticated(), function(req, res) {
     res.sendFile(__dirname + "/signin.html");
 });
 // routes for protected pages
@@ -317,6 +264,47 @@ app.get('/retrieveLatestResidentialProperites', function(req, res) {
 // get all properties in the database
 app.get('/retrieveAllProperties', function(req, res) {
     const query = db.prepare(findAllProperties);
+    query.all(function(error, rows) {
+        if (error) {
+            console.log(error);
+            res.status(400).json(error);
+        } else {
+            res.status(200).json(rows);
+        }
+    });
+});
+
+// post categories route
+app.post('/insertCategory', [
+    body('CategoryName').isLength({min: 3, max: 50})
+], 
+function(req, res){
+    const validErrors = validationResult(req);
+
+    if(!validErrors.isEmpty()){
+        console.log(validErrors);
+        res.status(400).json({ errors: validErrors.array() });
+    }else{
+    const CategoryName = req.body.CategoryName;
+
+    // insert into category table
+    const insert = db.prepare(insertCategory);
+    insert.run(CategoryName);
+    insert.finalize();
+
+    res.send({});
+    }    
+});
+
+
+
+// search properties
+//app.post()
+
+// manage section
+// query to display categories 
+app.get('/manageCategories', function(req, res) {
+    const query = db.prepare(findAllCategories);
     query.all(function(error, rows) {
         if (error) {
             console.log(error);

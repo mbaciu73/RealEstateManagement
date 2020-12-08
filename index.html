@@ -28,9 +28,10 @@
 <div class="container d-none d-lg-block d-xl-block sec_space"> </div>
 <!------------------ Search Form ------------------------------->
 <div class="container bg-light drop_shaddow xtr_tb_pad">
-  <form class="form" id="searchProperties">
+  <div class="form" id="searchProperties" >
     <div class="form-row"> 
       <!------ column 1 ------>
+      
       <div class="form-group col-md-3">
         <label for="County">County</label>
         <select class="form-control" id="County" onchange="getSelectedOptionArea()">
@@ -40,7 +41,7 @@
       <!------ column 2 ------>
       <div class="form-group col-md-3">
         <label for="Area">Area</label>
-        <select class="form-control" id="Area">
+        <select class="form-control" id="Area" name="Area">
           <option value="Select Area..." disabled selected>Select Area...</option>
         </select>
       </div>
@@ -72,7 +73,7 @@
       <!------ column 4 ------>
       <div class="form-group col-md-3">
         <label for="PropertyType">Property Type</label>
-        <select class="form-control" id="PropertyType">
+        <select class="form-control" id="PropertyType" name="PropertyType">
           <option value="Select Type..." disabled selected>Select Type...</option>
         </select>
       </div>
@@ -101,31 +102,31 @@
         <div class="form-row">
           <div class="col-md-6">
             <label for="Bedrooms"><span class="d-none d-xl-inline">No. of </span>Bedrooms</label>
-            <input type="text" class="form-control" placeholder="0" id = "Bedrooms">
+            <input type="text" class="form-control" placeholder="0" id = "Bedrooms" name="Bedrooms">
           </div>
           <div class="col-md-6">
             <label for="Bathrooms"><span class="d-none d-xl-inline">No. of </span>Bathrooms</label>
-            <input type="text" class="form-control" placeholder="0" id = "Bathrooms">
+            <input type="text" class="form-control" placeholder="0" id = "Bathrooms" name="Bathrooms">
           </div>
         </div>
       </div>
       <!------ column 2 ------>
       <div class="form-group col-md-3">
         <label for="MinPrice">Min. Price</label>
-        <input type="text" class="form-control" placeholder="€0000.00" id = "MinPrice">
+        <input type="text" class="form-control" placeholder="€0000.00" id = "MinPrice" name="MinPrice">
       </div>
       <!------ column 3 ------>
       <div class="form-group col-md-3">
         <label for="MaxPrice">Max. Price</label>
-        <input type="text" class="form-control" placeholder="€0000.00" id = "MaxPrice">
+        <input type="text" class="form-control" placeholder="€0000.00" id = "MaxPrice" name="MaxPrice">
       </div>
       <!------ column 4 ------>
       <div class="form-group col-md-3">
         <label for="Search" class="invisible">Search</label>
-        <button type="button" class="btn btn-primary btn-block"id = "Search">SEARCH</button>
+        <button type="submit" class="btn btn-primary btn-block" id="search">SEARCH</button>
       </div>
     </div>
-  </form>
+  </div><!-- end search from-->
 </div>
 <!------ end search form ------>
 
