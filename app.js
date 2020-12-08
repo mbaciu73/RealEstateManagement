@@ -37,6 +37,7 @@ const searchProperties = 'SELECT * FROM property NATURAL join area NATURAL join 
 const userNotFound = 'Username not found!';
 const incorrectPassword = 'Incorrect password!';
 const insertCategory = 'INSERT INTO procat (catname) values ($1);';
+const findRoles = 'SELECT * FROM roles;';
 
 // instantiate an object of express
 const app = express();
@@ -273,8 +274,20 @@ app.get('/retrieveAllProperties', function(req, res) {
         }
     });
 });
+// get roles from database
+app.get('/retrieveRole', function(req, res) {
+    const query = db.prepare(findRoles);
+    query.all(function(error, rows) {
+        if (error) {
+            console.log(error);
+            res.status(400).json(error);
+        } else {
+            res.status(200).json(rows);
+        }
+    });
+});
 
-// post categories route
+// post categories route and insert into table
 app.post('/insertCategory', [
     body('CategoryName').isLength({min: 3, max: 50})
 ], 
@@ -296,6 +309,38 @@ function(req, res){
     }    
 });
 
+// post user route and insert into reuser table
+app.post('/insertUser', [
+    body('email').isLength({min: 5, max: 50}).isEmail(),
+    body('name').isLength({min: 3, max: 50}),
+    body('phone').isLength({min: 9, max: 9}),
+    body('password').isLength({min: 4}),
+    body('role')
+], 
+function(req, res){
+    const validErrors = validationResult(req);
+
+    if(!validErrors.isEmpty()){
+        console.log(validErrors);
+        res.status(400).json({ errors: validErrors.array() });
+    }else{ 
+    const email = req.body.email;
+    const name = req.body.name;
+    const phone = req.body.phone;
+    const password = req.body.password;
+    const role = req.body.role;
+    
+    
+    bcrypt.hash(password, saltRounds, function(err, hash){
+        // insert into category table
+        const insert = db.prepare(insertUser);
+        insert.run(email,name,phone,hash,role);
+        insert.finalize();
+    });
+    res.send({});
+    }    
+    
+});
 
 
 // search properties
