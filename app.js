@@ -29,15 +29,17 @@ const findAllCategories = 'SELECT catid, catname FROM procat ORDER BY catid ASC;
 const findAllTypes = 'SELECT ptypeid, ptypename, catid FROM protype;';
 const findAllProperties = 'SELECT pid, paddr,ptypename,no_bed,no_baths,imgname,areaname,catname from property join pimages using (pid) join area using (areaid) join protype USING (ptypeid) JOIN procat USING (catid) ORDER by pid DESC;';
 const latestResidentials = 'SELECT pid, paddr,ptypename,no_bed,no_baths, imgname, areaname from property join pimages using (pid) join area using (areaid) join protype USING (ptypeid) JOIN procat USING (catid) where catid != 2 ORDER by pid DESC LIMIT 3;';
+const findRoles = 'SELECT * FROM roles;';
 const allProperties = 'SELECT pid, paddr,ptypename,no_bed,no_baths, imgname, areaname from property join pimages using (pid) join area using (areaid) join protype USING (ptypeid) JOIN procat USING (catid) ORDER by pid ASC;';
 const findPasswordByEmail = 'SELECT email, password FROM reusers where email = $1;';
 const findUserByEmail = 'SELECT email FROM reusers WHERE email = $1;';
-const insertUser = 'INSERT INTO reusers (email, name, phone, password, roleid) values ($1,$2,$3,$4,$5);'
+const insertUser = 'INSERT INTO reusers (email, name, phone, password, roleid) values ($1,$2,$3,$4,$5);';
 const searchProperties = 'SELECT * FROM property NATURAL join area NATURAL join County natural join protype NATURAL JOIN procat join reusers on property.sellerid = reusers.email NATURAL join pimages WHERE areaname like $1 AND ptypename like $2 and no_bed = $3 AND no_baths= $4 AND price BETWEEN $5 AND $6;';
 const userNotFound = 'Username not found!';
 const incorrectPassword = 'Incorrect password!';
 const insertCategory = 'INSERT INTO procat (catname) values ($1);';
-const findRoles = 'SELECT * FROM roles;';
+const insertProType = 'INSERT INTO protype(ptypename,catid) values ($1,$2);';
+const insertProperty = 'INSERT INTO property(paddr,areaid,country,no_bed,no_baths,ptypeid,sellerid,agentid,price) values($1,$2,$3,$4,$5,$6,$7,$8,$9);';
 
 // instantiate an object of express
 const app = express();
@@ -341,6 +343,59 @@ function(req, res){
     }    
     
 });
+
+app.post('/insertProType', [
+        body('type').isLength({min: 3, max: 50}),
+        body('cat')
+    ],
+    function(req, res){
+        const validErrors = validationResult(req);
+
+        if(!validErrors.isEmpty()){
+            console.log(validErrors);
+            res.status(400).json({ errors: validErrors.array() });
+        }else{
+            const type = req.body.type;
+            const cat = req.body.cat;
+
+            // insert into category table
+            const insert = db.prepare(insertProType);
+            insert.run(type,cat);
+            insert.finalize();
+
+            res.send({});
+        }
+});
+
+app.post('/insertProperty', [
+        body('paddr').isLength({min: 3, max: 50}),
+        body('areaid'),
+        body('country').isLength({min: 3,max:20}),
+        body('no_bed').isInt(),
+        body('no_baths').isInt(),
+        body('ptypeid'),
+        body('sellerid'),
+        body('agentid'),
+        body('price').isInt()
+    ],
+    function(req, res){
+        const validErrors = validationResult(req);
+
+        if(!validErrors.isEmpty()){
+            console.log(validErrors);
+            res.status(400).json({ errors: validErrors.array() });
+        }else{
+            const type = req.body.type;
+            const cat = req.body.cat;
+
+            // insert into category table
+            const insert = db.prepare(insertProType);
+            insert.run(type,cat);
+            insert.finalize();
+
+            res.send({});
+        }
+    });
 
 
 // search properties
