@@ -68,8 +68,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 ///////////////////////////////////////////////////////////////////////////////////////
 passport.use(new localStrategy(function(username, password, done) {
-    console.log(username);
-    console.log(password);
+
     const userQuery = db.prepare(findPasswordByEmail);
     userQuery.get(username, function(error, row) {
         if (error) return err // error with query
@@ -468,11 +467,25 @@ app.post("/searchResults", function(req, res){
             
         } else {
             var data = 
-            res.status(200).send(rows
-            );
+            res.status(200).send(rows);
             
         }
         
     });
+
+});
+
+//***************** Delete rows from database *************************
+// delete type
+app.post("/deleteType", isAuthenticated(), function(req, res) {
+    
+    const ptypeid = req.body.ptypeid;
+    //console.log(`${ptypeid}`);
+    const deleteStmt = db.prepare(deleteType);
+    deleteStmt.run(ptypeid);
+    deleteStmt.finalize();
+    res.redirect('http://localhost:3000/manage_types');
+    //res.json({});
+    
 
 });

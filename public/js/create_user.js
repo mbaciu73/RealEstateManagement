@@ -79,6 +79,7 @@ function createAjaxPost(){
 }
 
 $('#btnSubmit').click(function(){
+    alert('Hello');
     $('#mainform').submit();
 });
 
