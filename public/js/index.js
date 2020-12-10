@@ -47,7 +47,7 @@ function populateCountiesSelect(rows, status, xhr) {
 // function to populate Areas
 function populateAreasSelect(rows, status, xhr) {
     for (let i = 0; i < rows.length; i++) {
-        $(`<option style="display:none" data-areaid='${rows[i].areaid}' value='${rows[i].countid}'>${rows[i].areaname}</option>`).appendTo('#Area');
+        $(`<option id="${rows[i].countid}" style="display:none" data-areaid='${rows[i].areaid}' value='${rows[i].areaname}'>${rows[i].areaname}</option>`).appendTo('#Area');
     }// end for
 }// end populateAreas
 
@@ -61,7 +61,7 @@ function populateCatSelect(rows, status, xhr) {
 // function to populate types
 function populateTypesSelect(rows, status, xhr) {
     for (let i = 0; i < rows.length; i++) {
-        $(`<option style="display:none" data-catid='${rows[i].catid}'  value='${rows[i].catid}'>${rows[i].ptypename}</option>`).appendTo('#PropertyType');
+        $(`<option id="${rows[i].catid}" name="${rows[i].catid}" style="display:visible" data-catid='${rows[i].catid}'  value='${rows[i].ptypename}'>${rows[i].ptypename}</option>`).appendTo('#PropertyType');
     }// end for
 }// end populateType
 

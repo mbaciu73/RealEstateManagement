@@ -16,6 +16,7 @@ const session = require('express-session');
 // import passport module
 const passport = require('passport');
 const { query } = require('express');
+const { json } = require('body-parser');
 // import passport local
 const localStrategy = require('passport-local').Strategy;
 // salt rounds
@@ -23,6 +24,8 @@ const saltRounds = 10;
 
 
 // My Queries
+
+const findAllUsers = 'select * from reusers';
 const findAllCounties = 'SELECT countid, countyname FROM county ORDER BY countyname ASC;';
 const findAllAreas = 'SELECT areaid, areaname, countid FROM area ORDER BY countid;';
 const findAllCategories = 'SELECT catid, catname FROM procat ORDER BY catid ASC;';
@@ -34,12 +37,18 @@ const allProperties = 'SELECT pid, paddr,ptypename,no_bed,no_baths, imgname, are
 const findPasswordByEmail = 'SELECT email, password FROM reusers where email = $1;';
 const findUserByEmail = 'SELECT email FROM reusers WHERE email = $1;';
 const insertUser = 'INSERT INTO reusers (email, name, phone, password, roleid) values ($1,$2,$3,$4,$5);';
-const searchProperties = 'SELECT * FROM property NATURAL join area NATURAL join County natural join protype NATURAL JOIN procat join reusers on property.sellerid = reusers.email NATURAL join pimages WHERE areaname like $1 AND ptypename like $2 and no_bed = $3 AND no_baths= $4 AND price BETWEEN $5 AND $6;';
+const searchProperties = 'SELECT pid, paddr,ptypename,no_bed,no_baths,imgname,areaname,catname FROM property NATURAL join area NATURAL join County natural join protype NATURAL JOIN procat join reusers on property.sellerid = reusers.email NATURAL join pimages WHERE areaname like $1 AND ptypename like $2 and no_bed = $3 AND no_baths= $4 AND price BETWEEN $5 AND $6;';
 const userNotFound = 'Username not found!';
 const incorrectPassword = 'Incorrect password!';
 const insertCategory = 'INSERT INTO procat (catname) values ($1);';
 const insertProType = 'INSERT INTO protype(ptypename,catid) values ($1,$2);';
 const insertProperty = 'INSERT INTO property(paddr,areaid,country,no_bed,no_baths,ptypeid,sellerid,agentid,price) values($1,$2,$3,$4,$5,$6,$7,$8,$9);';
+const searchProperties2 = 'SELECT pid, paddr,ptypename,no_bed,no_baths,imgname,areaname,catname from property join pimages using (pid) join area using (areaid) join protype USING (ptypeid) JOIN procat USING (catid) where ptypename like $1;';
+const deleteUser = 'DELETE FROM reuser WHERE email = $1;';
+const deleteType = 'DELETE FROM protype WHERE ptypeid = $1;';
+const deleteCategory = 'DELETE FROM procat WHERE catid = $1;';
+const deleteProperty = 'DELETE FROM property WHERE pid = $1;';
+
 
 // instantiate an object of express
 const app = express();
@@ -154,6 +163,7 @@ app.get("/properties", function(req, res) {
 app.get("/signin", isNotAuthenticated(), function(req, res) {
     res.sendFile(__dirname + "/signin.html");
 });
+
 // routes for protected pages
 app.get("/admin", isAuthenticated(),function(req, res) {
         res.sendFile(__dirname + "/admin.html");
@@ -191,6 +201,7 @@ app.get("/manage_users", isAuthenticated(),function(req, res) {
 app.get("/my_profile", isAuthenticated(),function(req, res) {
     res.sendFile(__dirname + "/my_profile.html");
 });
+
 
 // logout
 app.get('/signout', function(req,res){
@@ -413,4 +424,55 @@ app.get('/manageCategories', function(req, res) {
             res.status(200).json(rows);
         }
     });
+});
+// query to display all users
+app.get('/manageUsers', function(req, res) {
+    const query = db.prepare(findAllUsers);
+    query.all(function(error, rows) {
+        if (error) {
+            console.log(error);
+            res.status(400).json(error);
+        } else {
+            res.status(200).json(rows);
+        }
+    });
+});
+app.get('/manageTypes', function(req, res) {
+    const query = db.prepare(findAllTypes);
+    query.all(function(error, rows) {
+        if (error) {
+            console.log(error);
+            res.status(400).json(error);
+        } else {
+            res.status(200).json(rows);
+        }
+    });
+});
+
+
+// Search form
+app.post("/searchResults", function(req, res){
+    const Area = req.body.Area;
+    const PropertyType = req.body.PropertyType;
+    const Bedrooms = req.body.Bedrooms;
+    const Bathrooms = req.body.Bathrooms;
+    const MinPrice = req.body.MinPrice;
+    const MaxPrice = req.body.MaxPrice;
+
+
+    const query = db.prepare(searchProperties);
+    query.all(Area,PropertyType, Bedrooms, Bathrooms, MinPrice, MaxPrice, function(error, rows) {
+        if (error) {
+            console.log(error);
+            res.status(400).json(error);
+            
+        } else {
+            var data = 
+            res.status(200).send(rows
+            );
+            
+        }
+        
+    });
+
 });

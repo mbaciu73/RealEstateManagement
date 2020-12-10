@@ -10,7 +10,7 @@
   <script src="js/fontawesome.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js" integrity="sha512-7yA/d79yIhHPvcrSiB8S/7TyX0OxlccU8F/kuB8mHYjLlF1MInPbEohpoqfz0AILoq5hoD7lELZAYYHbyeEjag==" crossorigin="anonymous"></script>  <script src="js/bootstrap.js"></script>
   <script src="js/header.js"></script>
-  <script src="js/index.js"></script>
+  
   <!-------------- Style Sheets ---------------->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   <link rel="stylesheet" href="css/all.min.css">
@@ -28,7 +28,7 @@
 <div class="container d-none d-lg-block d-xl-block sec_space"> </div>
 <!------------------ Search Form ------------------------------->
 <div class="container bg-light drop_shaddow xtr_tb_pad">
-  <div class="form" id="searchProperties" >
+  <form class="form" id="searchProperties" action="/searchResults" method="POST">
     <div class="form-row"> 
       <!------ column 1 ------>
       
@@ -50,9 +50,10 @@
           document.getElementById("Area").value = "Select Area...";
           var area = document.getElementById('Area');
           var selectElement = document.getElementById("County");
-          var valueSelected = selectElement.options[selectElement.selectedIndex].value;
+          //var valueSelected = selectElement.options[selectElement.selectedIndex].value;
+          var valueSelected = $('option:selected', '#County').attr('value');
           for ( var i = 1, len = area.options.length; i < len; i++ ) {
-              if((area.options[i].value) == valueSelected){
+              if((area.options[i].id) == valueSelected){
                 area.options[i].setAttribute('style','display:visible');
               }else{
                 area.options[i].setAttribute('style','display:none');
@@ -83,15 +84,19 @@
         document.getElementById("PropertyType").value = "Select Type...";
         var ptype = document.getElementById('PropertyType');
         var selectElement = document.getElementById("Category");
-        var valueSelected = selectElement.options[selectElement.selectedIndex].value;
+        // var valueSelected = selectElement.options[selectElement.selectedIndex].getAttribute('name'); // getting element value
+        var valueSelected = $('option:selected', '#Category').attr('value');
+		  console.log(valueSelected);
+		  
         for ( var i = 1, len = ptype.options.length; i < len; i++ ) {
 
-            if((ptype.options[i].value) == valueSelected){
+            if((ptype.options[i].id ) == valueSelected){
               ptype.options[i].setAttribute('style','display:visible');
             }else{
               ptype.options[i].setAttribute('style','display:none');
             }// end if else
         }// end for
+		 
         
     }// end getSelectedOption Function
     </script>
@@ -126,7 +131,7 @@
         <button type="submit" class="btn btn-primary btn-block" id="search">SEARCH</button>
       </div>
     </div>
-  </div><!-- end search from-->
+  </form><!-- end search from-->
 </div>
 <!------ end search form ------>
 
@@ -199,5 +204,6 @@
     <div id="latest-properties" class="row no-gutters"></div>
   </div>
 </div>
+<script src="js/index.js"></script>
 </body>
 </html>

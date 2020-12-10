@@ -1,12 +1,13 @@
 //populate query selects
 $(document).ready(function() {
-    const post = $.get('/retrieveAllProperties');
+    const post = $.get('/searchResults');
     post.done(populateAllProperties);
     post.fail(displayErrorPopulate);
   });
   
   //function to populate all the properties
   function populateAllProperties(rows, status, xhr) {
+    console.log(rows);
     for (let i = 0; i < rows.length; i++) {
   
         $(`<div class="col-md-4 col-sm-6 col-xs-12 p-3">
