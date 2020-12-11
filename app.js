@@ -48,6 +48,10 @@ const deleteUser = 'DELETE FROM reuser WHERE email = $1;';
 const deleteType = 'DELETE FROM protype WHERE ptypeid = $1;';
 const deleteCategory = 'DELETE FROM procat WHERE catid = $1;';
 const deleteProperty = 'DELETE FROM property WHERE pid = $1;';
+const updateUser = 'UPDATE reuser SET password = $1 WHERE email = $2;';
+const updateType = 'UPDATE protype SET ptype = $1 WHERE ptypeid = $2;';
+const updateCategory = 'UPDATE procat SET catname = $1 WHERE catid = $2;';
+const updateProperty = 'UPDATE property SET paddr = $1 WHERE pid = $2;';
 
 
 // instantiate an object of express
@@ -396,12 +400,19 @@ app.post('/insertProperty', [
             console.log(validErrors);
             res.status(400).json({ errors: validErrors.array() });
         }else{
-            const type = req.body.type;
-            const cat = req.body.cat;
+            const paddr = req.body.paddr;
+            const areaid = req.body.areaid;
+            const country = req.body.country;
+            const no_bed = req.body.no_bed;
+            const no_baths = req.body.no_baths;
+            const ptypeid = req.body.ptypeid;
+            const sellerid = req.body.sellerid;
+            const agentid = req.body.agentid;
+            const price = req.body.price;
 
             // insert into category table
-            const insert = db.prepare(insertProType);
-            insert.run(type,cat);
+            const insert = db.prepare(insertProperty);
+            insert.run(paddr,areaid,country,no_bed,no_baths,ptypeid,sellerid,agentid,price);
             insert.finalize();
 
             res.send({});
@@ -489,4 +500,134 @@ app.post("/deleteType", isAuthenticated(), function(req, res) {
     //res.json({});
     
 
+});
+
+app.post("/updateUser", [
+    body('email').isLength({min: 5, max: 50}).isEmail(),
+    body('name').isLength({min: 3, max: 50}),
+    body('phone').isLength({min: 9, max: 9}),
+    body('password').isLength({min: 4}),
+    body('role')
+], isAuthenticated(), function(req, res) {
+    const validErrors = validationResult(req);
+    if (!validErrors.isEmpty()) {
+        console.log(validErrors);
+        res.status(400).json({ errors: validErrors.array() });
+    } else {
+        const username = req.body.username;
+        const password = req.body.password;
+        bcrypt.hash(password, saltRounds, function(err, hash) {
+            // Now we can store the password hash in db.
+            const update = db.prepare(updateUser);
+            update.run(email,name,phone,hash,role);
+            update.finalize();
+
+        });
+    }
+});
+app.post("/deleteUser", isAuthenticated(), function(req, res) {
+    const email = req.body.email;
+    const deleteStmt = db.prepare(deleteUser);
+    deleteStmt.run(email);
+    deleteStmt.finalize();
+    res.redirect('http://localhost:3000/manage_users');
+    //res.json({});
+});
+
+app.post("/updateType", [
+    body('ptype').isLength({min: 3, max: 50}),
+        body('cat')
+],
+    function(req, res){
+        const validErrors = validationResult(req);
+
+        if(!validErrors.isEmpty()){
+            console.log(validErrors);
+            res.status(400).json({ errors: validErrors.array() });
+        }else{
+            const ptype = req.body.ptype;
+            const cat = req.body.cat;
+
+            // insert into category table
+            const update = db.prepare(updateType);
+            update.run(ptype,cat);
+            update.finalize();
+        }
+});
+app.post("/updateType", [
+        body('ptype').isLength({min: 3, max: 50}),
+        body('cat')
+    ],
+    function(req, res){
+        const validErrors = validationResult(req);
+
+        if(!validErrors.isEmpty()){
+            console.log(validErrors);
+            res.status(400).json({ errors: validErrors.array() });
+        }else{
+            const ptype = req.body.ptype;
+            const cat = req.body.cat;
+
+            // insert into category table
+            const update = db.prepare(updateType);
+            update.run(ptype,cat);
+            update.finalize();
+        }
+    });
+app.post("/updateCategory", [
+        body('CategoryName').isLength({min: 3, max: 50})
+    ],
+    function(req, res){
+        const validErrors = validationResult(req);
+
+        if(!validErrors.isEmpty()){
+            console.log(validErrors);
+            res.status(400).json({ errors: validErrors.array() });
+        }else{
+            const CategoryName = req.body.CategoryName;
+
+            // insert into category table
+            const update = db.prepare(updateCategory);
+            update.run(CategoryName);
+            update.finalize();
+
+            res.send({});
+        }
+    });
+
+app.post('/updateProperty'[
+    body('paddr').isLength({min: 3, max: 50}),
+    body('areaid'),
+    body('country').isLength({min: 3,max:20}),
+    body('no_bed').isInt(),
+    body('no_baths').isInt(),
+    body('ptypeid'),
+    body('sellerid'),
+    body('agentid'),
+    body('price').isInt()
+],
+function(req, res){
+    const validErrors = validationResult(req);
+
+    if(!validErrors.isEmpty()){
+        console.log(validErrors);
+        res.status(400).json({ errors: validErrors.array() });
+    }else{
+        const paddr = req.body.paddr;
+        const areaid = req.body.areaid;
+        const country = req.body.country;
+        const no_bed = req.body.no_bed;
+        const no_baths = req.body.no_baths;
+        const ptypeid = req.body.ptypeid;
+        const sellerid = req.body.sellerid;
+        const agentid = req.body.agentid;
+        const price = req.body.price;
+
+        // insert into category table
+        const update = db.prepare(updateProperty);
+        update.run(paddr,areaid,country,no_bed,no_baths,ptypeid,sellerid,agentid,price);
+        update.finalize();
+
+        res.send({});
+    }
 });

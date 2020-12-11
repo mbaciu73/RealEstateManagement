@@ -15,7 +15,7 @@ function listCategories(rows, status, xhr) {
         </div>
         <div class="col-lg-3 col-md-12 col-xs-12">
             <div class="row">
-                <div class="col-lg-6 col-md-4 col-xs-4"><button type="button" class="btn btn-success">Edit</button></div>
+                <div class="col-lg-6 col-md-4 col-xs-4"><button type="button" class="btn btn-success" onclick = "editCategory()">Edit</button></div>
                 <div class="col-lg-6 col-md-4 col-xs-4"><button type="button" class="btn btn-danger">Delete</button></div>
             </div>
             
@@ -25,4 +25,14 @@ function listCategories(rows, status, xhr) {
 }// end populateLatestResidential
 function displayErrorPopulate() {
 	console.log('failed to populate');
+}
+//edits the category using the update category path in app.js
+function editCategory(){
+    // json object
+    const data = {
+        cat: $('#cat')[0].value
+    }
+    const post = $.post('http://localhost:3000/updateCategory', data);
+    post.done(processResults);
+    post.fail(processErrors);
 }

@@ -15,8 +15,8 @@ function listUsers(rows, status, xhr) {
         </div>
         <div class="col-lg-3 col-md-12 col-xs-12">
             <div class="row">
-                <div class="col-lg-6 col-md-4 col-xs-4"><button type="button" class="btn btn-success">Edit</button></div>
-                <div class="col-lg-6 col-md-4 col-xs-4"><button type="button" class="btn btn-danger">Delete</button></div>
+                <div class="col-lg-6 col-md-4 col-xs-4"><button type="button" class="btn btn-success" onclick="editUser()">Edit</button></div>
+                <div class="col-lg-6 col-md-4 col-xs-4"><button type="button" class="btn btn-danger" >Delete</button></div>
             </div>
             
         </div>
@@ -25,4 +25,17 @@ function listUsers(rows, status, xhr) {
 }// end populateLatestResidential
 function displayErrorPopulate() {
 	console.log('failed to populate');
+}
+//edits the category using the update category path in app.js
+function editUser(){
+    const data = {
+        email: $('#email')[0].value,
+        name: $('#name')[0].value,
+        phone: $('#phone')[0].value,
+        password: $('#password')[0].value,
+        role: $('#role')[0].value
+    }
+    const post = $.post('http://localhost:3000/updateUser', data);
+    post.done(processResults);
+    post.fail(processErrors);
 }

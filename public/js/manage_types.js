@@ -32,8 +32,8 @@ function listTypes(rows, status, xhr) {
             </div>
             <div class="col-lg-3 col-md-12 col-xs-12">
                 <div class="row">
-                    <div class="col-lg-6 col-md-4 col-xs-4"><button type="button" class="btn btn-success" onClick="editType(this)">Edit</button></div>
-                    <div class="col-lg-6 col-md-4 col-xs-4"><button name="${rows[i].ptypeid}" type="button" class="btn btn-danger" onClick="deleteType(this)">Delete</button></div>
+                    <div class="col-lg-6 col-md-4 col-xs-4"><button type="button" class="btn btn-success" onclick="editType()">Edit</button></div>
+                    <div class="col-lg-6 col-md-4 col-xs-4"><button name="${rows[i].ptypeid}" type="button" class="btn btn-danger" onclick="deleteType(this)">Delete</button></div>
                 </div>
                 
             </div>
@@ -61,14 +61,14 @@ function deleteType(x){
 function deletedMessage(){
     location.reload();
 }
-
+//edits the category using the update category path in app.js
 function editType(){
     // json object
     const data = {
         ptype: $('#ptype')[0].value,
         cat: $('#cat')[0].value
     }
-    const post = $.post('http://localhost:3000/updateProType', data);
+    const post = $.post('http://localhost:3000/updateType', data);
     post.done(processResults);
     post.fail(processErrors);
 }
