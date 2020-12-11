@@ -79,7 +79,6 @@ function createAjaxPost(){
 }
 
 $('#btnSubmit').click(function(){
-    alert('Hello');
     $('#mainform').submit();
 });
 
@@ -94,7 +93,7 @@ function displayErrorPopulate() {
 }
 
 function processResults(){
-    console.log('Data sent to server');
+    alert('Successfully created');
 }
 function processErrors(){
     console.log('Validation Errors');

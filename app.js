@@ -355,7 +355,7 @@ function(req, res){
 });
 
 app.post('/insertProType', [
-        body('type').isLength({min: 3, max: 50}),
+        body('ptype').isLength({min: 3, max: 50}),
         body('cat')
     ],
     function(req, res){
@@ -365,15 +365,16 @@ app.post('/insertProType', [
             console.log(validErrors);
             res.status(400).json({ errors: validErrors.array() });
         }else{
-            const type = req.body.type;
+            const ptype = req.body.ptype;
             const cat = req.body.cat;
 
             // insert into category table
             const insert = db.prepare(insertProType);
-            insert.run(type,cat);
+            insert.run(ptype,cat);
             insert.finalize();
 
-            res.send({});
+
+            res.send();
         }
 });
 

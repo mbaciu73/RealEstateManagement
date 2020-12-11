@@ -7,7 +7,7 @@ $(document).ready(function() {
 // form validation rules
 $('#mainForm').validate({
     rules: {
-        type: {
+        ptype: {
             required: true,
             minlength: 3,
             maxlength: 50
@@ -17,7 +17,7 @@ $('#mainForm').validate({
         }
     },
     messages: {
-        type: {
+        ptype: {
             required: 'Enter a valid Type name',
             minlength: '3 characters minimum.'
         },
@@ -26,7 +26,7 @@ $('#mainForm').validate({
         }
     },
     onfocusout: validateFields,
-    submitHandler: createAjaxPost
+    submitHandler: createAjaxPostType
 
 });
 
@@ -34,10 +34,11 @@ function validateFields(element, event){
     $(element).valid();
 }
 
-function createAjaxPost(){
+
+function createAjaxPostType(){
     // json object
     const data = {
-        type: $('#type')[0].value,
+        ptype: $('#ptype')[0].value,
         cat: $('#cat')[0].value
     }
     const post = $.post('http://localhost:3000/insertProType', data);
@@ -47,6 +48,7 @@ function createAjaxPost(){
 
 $('#btnSubmit').click(function(){
     $('#mainForm').submit();
+
 });
 
 function displayErrorPopulate() {
@@ -54,7 +56,7 @@ function displayErrorPopulate() {
 }
 
 function processResults(){
-    console.log('Data sent to server');
+    alert('Successfully created');
 }
 function processErrors(){
     console.log('Validation Errors');
